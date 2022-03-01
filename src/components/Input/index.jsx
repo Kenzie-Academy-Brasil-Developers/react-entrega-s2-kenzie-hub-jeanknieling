@@ -1,10 +1,10 @@
 import { InputContainer } from "./style";
 
-const Input = ({ label, register, name, error = "", ...rest }) => {
+const Input = ({ label, width, register, name, error = "", ...rest }) => {
 
     return (
 
-        <InputContainer>
+        <InputContainer width={width}>
         
             <p>{label} {!!error && <span> - {error} </span>}</p>
 

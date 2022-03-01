@@ -9,7 +9,7 @@ export const Container = styled.button`
     font-weight: 600;
     margin-top: 5px;
     padding: 10px 12px;
-    width: 90%;
+    width: ${(props) => props.width};
     transition: 0.2s;
 
     &:hover {

@@ -24,9 +24,9 @@ const Login = () => {
 
                 <h2>Login</h2>
 
-                <Input label="Email" placeholder="Digite aqui seu email"/>
+                <Input label="Email" placeholder="Digite aqui seu email" width="100%"/>
 
-                <Input label="Senha" placeholder="Digite aqui sua senha" type="password"/>
+                <Input label="Senha" placeholder="Digite aqui sua senha" width="100%" type="password"/>
 
                 <Button 
 
@@ -37,6 +37,8 @@ const Login = () => {
                     color={css`var(--color-primary)`} 
 
                     colorHover={css`var(--color-primary-50)`} 
+
+                    width="90%"
 
                 />
 
@@ -51,6 +53,8 @@ const Login = () => {
                     color={css`var(--gray-1)`} 
 
                     colorHover={css`var(--gray-1)`}
+
+                    width="90%"
 
                     onClick={() => handleNavigation("/registration")}
 

@@ -12,7 +12,7 @@ export const InputContainer = styled.label`
         color: var(--gray-0);
         margin-top: 5px;
         padding: 10px 12px;
-        width: 100%;
+        width: ${(props) => props.width};
 
         &::placeholder {
             color: var(--gray-1);
