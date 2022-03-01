@@ -16,7 +16,7 @@ export const Container = styled.form`
     justify-content: space-around;
     align-items: center;
     height: 400px;
-    min-width: 300px;
+    width: 300px;
     padding: 20px 0;
 
     h2 {
@@ -35,5 +35,20 @@ export const Container = styled.form`
 
     @media (min-width: 600px) {
         width: 400px;
+        height: 500px;
+
+        h2 {
+            font-size: 1.2rem;
+        }
+
+        a {
+            color: var(--gray-1);
+            font-size: 0.8rem;
+            font-weight: 600;
+
+            &:hover {
+                color: var(--gray-0);
+            }
+        }
     }
 `;

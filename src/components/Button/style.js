@@ -10,4 +10,15 @@ export const Container = styled.button`
     margin-top: 5px;
     padding: 10px 12px;
     width: 90%;
+    transition: 0.2s;
+
+    &:hover {
+        background-color: ${(props) => props.colorHover};
+        transition: 0.5s;
+    }
+
+    @media (min-width: 600px) {
+        font-size: 0.85rem;
+        padding: 15px;
+    }
 `; 

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, MainContainer } from './style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -6,13 +6,21 @@ import { css } from 'styled-components';
 
 const Login = () => {
 
-    return (
+    const history = useHistory();
 
+    const handleNavigation = (path) => {
+
+        history.push(path);
+
+    }
+
+    return (
+        
         <MainContainer>
 
             <h1>Kenzie Hub</h1>
 
-            <Container>
+            <Container onSubmit={() => handleNavigation("/dashboard")}>
 
                 <h2>Login</h2>
 
@@ -20,11 +28,33 @@ const Login = () => {
 
                 <Input label="Senha" placeholder="Digite aqui sua senha" type="password"/>
 
-                <Button text="Entrar" color="#FF577F"/>
+                <Button 
+
+                    type="submit"
+
+                    text="Entrar" 
+
+                    color={css`var(--color-primary)`} 
+
+                    colorHover={css`var(--color-primary-50)`} 
+
+                />
 
                 <Link to="/registration">Ainda não possui uma conta?</Link>
 
-                <Button text="Cadastre-se" color="#868E96"/>
+                <Button 
+
+                    type="button"
+
+                    text="Cadastre-se" 
+
+                    color={css`var(--gray-1)`} 
+
+                    colorHover={css`var(--gray-1)`}
+
+                    onClick={() => handleNavigation("/registration")}
+
+                />
 
             </Container>
 

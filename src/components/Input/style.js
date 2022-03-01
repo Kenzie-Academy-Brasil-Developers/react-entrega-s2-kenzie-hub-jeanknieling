@@ -22,5 +22,18 @@ export const InputContainer = styled.label`
         &:focus{
             border: 2px solid var(--gray-1);
         }
+
+        @media (min-width: 600px) {
+            padding: 15px;
+
+            &::placeholder {
+            color: var(--gray-1);
+            font-size: 0.85rem
+        }
+        }
+    }
+
+    @media (min-width: 600px) {
+        font-size: 0.85rem;
     }
 `;

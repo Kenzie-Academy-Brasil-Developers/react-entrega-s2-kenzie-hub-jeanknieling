@@ -13,11 +13,11 @@ const Routes = () => {
                 <Login/>
             </Route>
 
-            <Route exact path="/registration">
+            <Route path="/registration">
                 <Registration/>
             </Route>
 
-            <Route exact path="/dashboard">
+            <Route path="/dashboard">
                 <Dashboard/>
             </Route>
 

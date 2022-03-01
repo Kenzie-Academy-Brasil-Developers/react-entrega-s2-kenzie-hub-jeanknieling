@@ -1,10 +1,10 @@
 import { Container } from "./style";
 
-const Button = ({ text, color }) => {
+const Button = ({ text, ...rest }) => {
 
     return (
 
-        <Container color={color}>{text}</Container>
+        <Container {...rest}>{text}</Container>
 
     );
 };
