@@ -26,6 +26,11 @@ export default createGlobalStyle`
     body {
         background-color: var(--gray-4);
         color: var(--gray-0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
     }
 
     body, input, button {
@@ -34,10 +39,11 @@ export default createGlobalStyle`
     }
 
     h1, h2, h3, h4, h5, h6 {
+        text-align: center;
         font-weight: 700;
     }
 
-    button, input {
+    button, input, a, label {
         cursor: pointer;
     }
 

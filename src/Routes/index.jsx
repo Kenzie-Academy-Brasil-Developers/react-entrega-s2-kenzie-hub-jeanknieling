@@ -4,7 +4,9 @@ import Registration from '../pages/Registration';
 import Dashboard from '../pages/Dashboard';
 
 const Routes = () => {
+
     return (
+
         <Switch>
 
             <Route exact path="/">
@@ -20,10 +22,13 @@ const Routes = () => {
             </Route>
 
             <Route 
-                render ={ () => <Redirect to="/"/>}
+                render={() => <Redirect to="/"/>}
             />
+
         </Switch>
+
     );
+
 }
 
 export default Routes;
