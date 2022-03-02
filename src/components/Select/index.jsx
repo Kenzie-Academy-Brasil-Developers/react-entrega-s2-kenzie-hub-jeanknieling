@@ -1,6 +1,6 @@
 import { SelectContainer } from "./style";
 
-const Select = ({ selectOptions, label }) => {
+const Select = ({ selectOptions, label, register, name, error = "", ...rest }) => {
 
     return (
 
@@ -8,9 +8,9 @@ const Select = ({ selectOptions, label }) => {
 
             <p>{label}</p>
 
-            <select>
+            <select {...register(name)} {...rest}>
 
-                {selectOptions.map((option, index) => <option value={index} key={index}>{option}</option>)};
+                {selectOptions.map((option, index) => <option value={index+1} key={index}>{option}</option>)};
 
             </select>
 

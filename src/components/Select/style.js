@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css} from 'styled-components';
 
-export const SelectContainer = styled.label`color: var(--gray-0);
+export const SelectContainer = styled.label`
     display: flex;
     flex-direction: column;
     font-size: 12px;

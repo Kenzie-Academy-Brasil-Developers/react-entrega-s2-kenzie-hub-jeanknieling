@@ -26,9 +26,9 @@ const Registration = () => {
 
     const onSubmitFunction= ({ name, email, password, module }) => {
 
-        const user = { name, email, password, module };
+        const user = { name, email, password, module};
 
-        console.log(module)
+        console.log(user)
 
         return history.push("/");
 
