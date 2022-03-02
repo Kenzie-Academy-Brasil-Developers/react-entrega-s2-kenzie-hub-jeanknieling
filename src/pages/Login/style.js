@@ -10,7 +10,7 @@ export const MainContainer = styled.main`
 
 export const Container = styled.form`
     background-color: var(--gray-3);
-    border-radius: 3px;
+    border-radius: 5px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

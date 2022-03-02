@@ -1,4 +1,7 @@
 import { Link, useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { Container, MainContainer } from './style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -8,11 +11,22 @@ const Login = () => {
 
     const history = useHistory();
 
-    const handleNavigation = (path) => {
+    const schema = yup.object().shape({
 
-        history.push(path);
+        email: yup.string().trim().email("Email inválido!").required("Campo obrigatório!"),
+        password: yup.string().min(8, "Mínimo de 8 digitos!").required("Campo obrigatório!")
 
-    }
+    });
+
+    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
+
+    const onSubmitFunction= (data) => {
+
+        console.log(data)
+
+        return history.push("/dashboard");
+
+    };
 
     return (
         
@@ -20,24 +34,40 @@ const Login = () => {
 
             <h1>Kenzie Hub</h1>
 
-            <Container onSubmit={() => handleNavigation("/dashboard")}>
+            <Container onSubmit={handleSubmit(onSubmitFunction)}>
 
                 <h2>Login</h2>
 
-                <Input label="Email" placeholder="Digite aqui seu email" width="100%"/>
+                <Input 
 
-                <Input label="Senha" placeholder="Digite aqui sua senha" width="100%" type="password"/>
+                    label="Email"
+                    placeholder="Digite aqui seu email" 
+                    width="100%"
+                    register={register}
+                    name="email"
+                    error={errors.email?.message}
+
+                />
+
+                <Input 
+
+                    label="Senha" 
+                    placeholder="Digite aqui sua senha" 
+                    width="100%" 
+                    type="password"
+                    register={register}
+                    name="password"
+                    error={errors.password?.message}
+
+                />
+                    
 
                 <Button 
 
                     type="submit"
-
                     text="Entrar" 
-
                     color={css`var(--color-primary)`} 
-
                     colorHover={css`var(--color-primary-50)`} 
-
                     width="90%"
 
                 />
@@ -47,16 +77,11 @@ const Login = () => {
                 <Button 
 
                     type="button"
-
                     text="Cadastre-se" 
-
                     color={css`var(--gray-1)`} 
-
-                    colorHover={css`var(--gray-1)`}
-
+                    colorHover={css`var(--gray-2)`}
                     width="90%"
-
-                    onClick={() => handleNavigation("/registration")}
+                    onClick={() => history.push("/registration")}
 
                 />
 

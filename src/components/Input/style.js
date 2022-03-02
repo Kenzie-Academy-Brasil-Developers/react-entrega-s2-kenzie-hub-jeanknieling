@@ -1,13 +1,14 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const InputContainer = styled.label`
+    color: ${(props) => props.isErrored && css`var(--error)`};
     font-size: 12px;
     font-weight: 400;
     width: 90%;
 
     input {
         background-color: var(--gray-2);
-        border: 2px solid transparent;
+        border: 2px solid ${(props) => props.isErrored ? css`var(--error)` : "transparent"};
         border-radius: 5px;
         color: var(--gray-0);
         margin-top: 5px;
@@ -27,9 +28,9 @@ export const InputContainer = styled.label`
             padding: 15px;
 
             &::placeholder {
-            color: var(--gray-1);
-            font-size: 0.85rem
-        }
+                color: var(--gray-1);
+                font-size: 0.85rem
+            }
         }
     }
 

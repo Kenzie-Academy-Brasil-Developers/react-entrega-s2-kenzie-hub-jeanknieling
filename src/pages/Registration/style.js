@@ -39,24 +39,25 @@ export const MainContainer = styled.main`
 
 export const Container = styled.form`
     background-color: var(--gray-3);
+    border-radius: 5px;
     width: 300px;
     padding: 34px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: 0.3s;
 
     h2 {
-        
         font-size: 15px;
-        margin-bottom: 18px;
+        margin-bottom: 22px;
     }
 
-    span {
+    h2 + span {
         color: var(--gray-1);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 400;
-        margin-bottom: 18px;
+        margin-bottom: 22px;
     }
 
     Input {
@@ -70,14 +71,13 @@ export const Container = styled.form`
             font-size: 1.2rem;
         }
 
-        a {
-            color: var(--gray-1);
-            font-size: 0.8rem;
-            font-weight: 600;
-
-            &:hover {
-                color: var(--gray-0);
-            }
+        h2 + span {
+            font-size: 0.85rem;
         }
+
+        label{
+            font-size: 0.85rem;
+        }
+
     }
 `;

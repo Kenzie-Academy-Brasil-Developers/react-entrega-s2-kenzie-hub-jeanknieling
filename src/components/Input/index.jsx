@@ -4,15 +4,16 @@ const Input = ({ label, width, register, name, error = "", ...rest }) => {
 
     return (
 
-        <InputContainer width={width}>
+        <InputContainer width={width} isErrored={!!error}>
         
             <p>{label} {!!error && <span> - {error} </span>}</p>
 
-            <input {...rest}/>
+            <input {...register(name)} {...rest}/>
 
         </InputContainer>
 
     );
+
 };
 
 export default Input;

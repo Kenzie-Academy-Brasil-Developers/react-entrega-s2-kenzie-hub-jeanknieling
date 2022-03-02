@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
-export const SelectContainer = styled.label`
-   
-    color: var(--gray-0);
+export const SelectContainer = styled.label`color: var(--gray-0);
     display: flex;
     flex-direction: column;
     font-size: 12px;
@@ -15,7 +13,15 @@ export const SelectContainer = styled.label`
         border-radius: 5px;
         color: var(--gray-1);
         margin: 5px 0 18px 0;
-        padding: 15px;
+        padding: 10px 12px;
+    }
+
+    @media (min-width: 600px) {
+
+        select {
+            padding: 15px;
+        }
+
     }
 
 `;
