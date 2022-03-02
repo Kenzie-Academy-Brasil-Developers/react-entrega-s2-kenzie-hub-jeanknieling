@@ -1,13 +1,15 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { Container, MainContainer } from './style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import api from '../../services/api';
+import { toast } from "react-toastify";
 import { css } from 'styled-components';
 
-const Login = () => {
+const Login = ({ authenticated, setAuthenticated }) => {
 
     const history = useHistory();
 
@@ -22,11 +24,27 @@ const Login = () => {
 
     const onSubmitFunction= (data) => {
 
-        console.log(data)
+        api.post("/sessions", data)
+        .then((response) => {
 
-        return history.push("/dashboard");
+            const { token} = response.data;
+
+            localStorage.setItem("@Kenziehub:token", JSON.stringify(token));
+
+            setAuthenticated(true);
+
+            return history.push("/dashboard");
+
+        })
+        .catch((error) => toast.error("Email ou senha inválidos"));
 
     };
+
+    if(authenticated) {
+
+        return <Redirect to="/dashboard"/>
+
+    }
 
     return (
         

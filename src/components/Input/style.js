@@ -15,19 +15,26 @@ export const InputContainer = styled.label`
         padding: 10px 12px;
         width: ${(props) => props.width};
 
-        &::placeholder {
+        :-webkit-autofill {
+            border: 2px solid var(--gray-2);
+            box-shadow: 0 0 0 50px var(--gray-2) inset;
+            -webkit-box-shadow: 0 0 0 50px var(--gray-2) inset;
+            -webkit-text-fill-color: var(--gray-0);
+        }
+
+        ::placeholder {
             color: var(--gray-1);
             font-size: 13px;
         }
 
-        &:focus{
+        :focus{
             border: 2px solid var(--gray-1);
         }
 
         @media (min-width: 600px) {
             padding: 15px;
 
-            &::placeholder {
+            ::placeholder {
                 color: var(--gray-1);
                 font-size: 0.85rem
             }

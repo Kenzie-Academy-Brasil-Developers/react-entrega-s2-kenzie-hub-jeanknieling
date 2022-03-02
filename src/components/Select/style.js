@@ -14,6 +14,11 @@ export const SelectContainer = styled.label`
         color: var(--gray-1);
         margin: 5px 0 18px 0;
         padding: 10px 12px;
+
+        :focus{
+            border: 2px solid var(--gray-1);
+        }
+
     }
 
     @media (min-width: 600px) {

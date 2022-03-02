@@ -10,7 +10,7 @@ const Select = ({ selectOptions, label, register, name, error = "", ...rest }) =
 
             <select {...register(name)} {...rest}>
 
-                {selectOptions.map((option, index) => <option value={index+1} key={index}>{option}</option>)};
+                {selectOptions.map((option, index) => <option value={option} key={index}>{option}</option>)};
 
             </select>
 

@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -6,9 +6,11 @@ import { MainContainer, Container } from './style';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
+import api from '../../services/api';
+import { toast } from "react-toastify";
 import { css } from 'styled-components';
 
-const Registration = () => {
+const Registration = ({ authenticated }) => {
 
     const history = useHistory();
 
@@ -18,23 +20,46 @@ const Registration = () => {
         email: yup.string().trim().email("Email inválido!").required("Campo obrigatório!"),
         password: yup.string().min(8, "Mínimo de 8 digitos!").required("Campo obrigatório!"),
         passwordConfirm: yup.string().oneOf([yup.ref("password")], "Senhas diferentes!").required("Campo obrigatório!"),
-        module: yup.string().required("Campo obrigatório!"),
+        course_module: yup.string().required("Campo obrigatório!"),
 
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
-    const onSubmitFunction= ({ name, email, password, module }) => {
+    const onSubmitFunction= ({ name, email, password, course_module }) => {
 
-        const user = { name, email, password, module};
+        const user = {
+            email, 
+            password, 
+            name, 
+            "bio": "Lorem ipsum dolor emet",
+            "contact": "linkedin/in/johndoe", 
+            course_module, 
+        };
 
         console.log(user)
 
-        return history.push("/");
+        api.post("/users", user)
+        .then((_) => {
+
+            toast.success('Sucesso ao criar a conta!');
+
+            return history.push("/login");
+
+        })
+        .catch((error) => {
+
+            toast.error(error.response.data.message);
+
+        });
 
     };
 
-    const selectOptions = ["1° MÓDULO","2° MÓDULO","3° MÓDULO","4° MÓDULO","5° MÓDULO","6° MÓDULO"];
+    if(authenticated) {
+
+        return <Redirect to="/dashboard"/>
+
+    }
 
     return (
 
@@ -111,10 +136,15 @@ const Registration = () => {
                 <Select 
 
                     label="Selecionar módulo" 
-                    selectOptions={selectOptions}
                     register={register}
-                    name="module"
-                    error={errors.module?.message}
+                    name="course_module"
+                    error={errors.course_module?.message}
+                    selectOptions={[
+                        "Primeiro módulo (Introdução ao Frontend)",
+                        "Segundo módulo (Frontend Avançado)",
+                        "Terceiro módulo (Introdução ao Backend)",
+                        "Quarto módulo (Backend Avançado)"
+                    ]}
 
                 />
 
@@ -122,6 +152,7 @@ const Registration = () => {
 
                     text="Cadastrar" 
                     color={css`var(--color-primary-negative)`} 
+                    colorHover={css`var(--color-primary-50)`} 
                     width="90%"
 
                 />
