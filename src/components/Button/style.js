@@ -5,6 +5,9 @@ export const Container = styled.button`
     border: none;
     border-radius: 5px;
     color: var(--gray-0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 13px;
     font-weight: 600;
     margin-top: 5px;

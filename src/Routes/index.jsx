@@ -6,7 +6,7 @@ import Dashboard from '../pages/Dashboard';
 
 const Routes = () => {
 
-    const [authenticated, setAuthenticated] = useState(false);
+    const [authenticated, setAuthenticated] = useState(true);
 
     useEffect(() => {
 

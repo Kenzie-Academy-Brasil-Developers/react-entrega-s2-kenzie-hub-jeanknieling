@@ -15,10 +15,6 @@ export const MainContainer = styled.main`
 
         Button {
             font-size: 11px;
-            font-weight: 600;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 25px;
         }
     }

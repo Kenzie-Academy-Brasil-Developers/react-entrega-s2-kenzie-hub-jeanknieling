@@ -79,7 +79,6 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
                 />
                     
-
                 <Button 
 
                     type="submit"
