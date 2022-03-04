@@ -6,7 +6,7 @@ import Dashboard from '../pages/Dashboard';
 
 const Routes = () => {
 
-    const [authenticated, setAuthenticated] = useState(true);
+    const [authenticated, setAuthenticated] = useState(false);
 
     useEffect(() => {
 
@@ -29,7 +29,6 @@ const Routes = () => {
                 <Login 
 
                     authenticated={authenticated}
-
                     setAuthenticated={setAuthenticated}
 
                 />
@@ -44,7 +43,18 @@ const Routes = () => {
 
             <Route path="/dashboard">
 
-                <Dashboard authenticated={authenticated}/>
+                {
+                   authenticated ?  <Dashboard 
+                
+                    authenticated={authenticated}
+                    setAuthenticated={setAuthenticated}
+
+                    /> : <Redirect to="/"/>
+                }
+
+
+               
+
 
             </Route>
 

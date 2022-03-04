@@ -1,27 +1,71 @@
-import { ModalBlockerContainer, ModalContainer, ButtonsContainer } from "./style";
+import { useEffect } from "react";
+import { ModalBlockerContainer, ModalContainer } from "./style";
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import api from "../../services/api";
+import { toast } from "react-toastify";
 import Button from '../Button';
 import Input from '../Input';
 import Select from '../Select';
 import { css } from 'styled-components';
 
-const Modal = ({ text, labelInput, labelSelect, placeholder, handleClick, setHandleClick, disabled }) => {
+const Modal = ({ 
+
+    text, labelInput, labelSelect, placeholder, handleClick, setHandleClick, disabled, update, setUpdate, cursor
+
+}) => {
+
+    const headers = {headers: {
+
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem("@Kenziehub:token"))}`,
+
+    }};
 
     const schema = yup.object().shape({
 
-        technology: yup.string().trim().required("Campo obrigatório!"),
+        title: yup.string().trim().required("Campo obrigatório!"),
+        status: yup.string().required("Campo obrigatório!"),
 
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({ resolver: yupResolver(schema) });
 
+    const addTechnology = (data) => {
+
+        api.post(`/users/techs`, data, headers)
+        .then((_) => {
+
+            setUpdate(update + 1);
+            toast.success("Tecnologia cadastrada com sucesso!");
+            setHandleClick("");
+        
+        })
+        .catch((error) => toast.error(error.response.data.message));
+
+
+
+    }
+
+    /* const detailTechnology = () => {
+
+
+            api.put(`users/techs/:tech_id`)
+            .then((response) => setUser(response.data))
+            .catch((error) => toast.error(error.response.data.message));
+
+
+    } */
+    
     return (
 
         <ModalBlockerContainer>
 
-            <ModalContainer>
+            <ModalContainer onSubmit={
+
+                handleSubmit(addTechnology)
+
+            }>
 
                 <div>
 
@@ -38,13 +82,14 @@ const Modal = ({ text, labelInput, labelSelect, placeholder, handleClick, setHan
 
                 <Input
 
+                    cursor={cursor}
                     disabled={disabled}
                     label={labelInput}
                     placeholder={placeholder} 
                     width="100%"
                     register={register}
-                    name="technology"
-                    error={errors.technology?.message}
+                    name="title"
+                    error={errors.title?.message}
 
                 />
 
@@ -52,8 +97,8 @@ const Modal = ({ text, labelInput, labelSelect, placeholder, handleClick, setHan
 
                     label={labelSelect}
                     register={register}
-                    name="description_status"
-                    error={errors.description_status?.message}
+                    name="status"
+                    error={errors.status?.message}
                     selectOptions={[
                         "Iniciante", 
                         "Intermediário", 
@@ -67,10 +112,10 @@ const Modal = ({ text, labelInput, labelSelect, placeholder, handleClick, setHan
 
                     <Button 
 
+                        type="submit"
                         text="Cadastrar Tecnologia"
                         color={css`var(--color-primary)`}
                         colorHover={css`var(--color-primary-50)`}
-                        onClick={() => setHandleClick("")}
 
                     />
 
@@ -81,7 +126,6 @@ const Modal = ({ text, labelInput, labelSelect, placeholder, handleClick, setHan
                             text="Excluir"
                             color={css`var(--gray-2)`}
                             colorHover={css`var(--gray-1)`}
-                            onClick={() => setHandleClick("")}
 
                         />
 

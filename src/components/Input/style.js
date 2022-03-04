@@ -11,6 +11,7 @@ export const InputContainer = styled.label`
         border: 2px solid ${(props) => props.isErrored ? css`var(--error)` : "transparent"};
         border-radius: 5px;
         color: var(--gray-0);
+        cursor: ${(props) => props.cursor ? props.cursor : "pointer"};
         margin-top: 5px;
         padding: 10px 12px;
         width: ${(props) => props.width};

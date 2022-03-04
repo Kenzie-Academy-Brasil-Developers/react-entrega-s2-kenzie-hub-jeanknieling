@@ -37,9 +37,13 @@ export const ModalContainer = styled.form`
         width: 100%;
 
         Button {
-            color: var(--gray-0);
+            color: var(--gray-1);
             font-size: 14px;
             margin: 0;
+
+            :hover {
+                color: var(--gray-0);
+            }
         }
     }
 
@@ -48,9 +52,28 @@ export const ModalContainer = styled.form`
         display: flex;
         justify-content: space-around;
         padding: 0 2px;
+
+        Button {
+            color: var(--gray-0);
+            font-size: 14px;
+            margin: 0;
+        }
     }
 
     label p {
         margin-top: 15px;
+    }
+
+    @media (min-width: 600px) {
+        height: 320px;
+        width: 370px;
+
+        div {
+            font-size: 1rem;
+
+            button {
+                font-size: 1rem;
+            }
+        }
     }
 `;

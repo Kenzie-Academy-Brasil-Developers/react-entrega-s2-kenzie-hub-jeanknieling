@@ -1,27 +1,48 @@
 import { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory, Redirect } from 'react-router-dom';
 import { 
     WellcomeContainer, 
     HeaderContainer, 
     ChooseContainer, 
     MainContainer, 
-    TecnologesContainer,
+    TecnologiesContainer,
     LineContainer,
     Content
 } from "./style";
+import api from '../../services/api';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
+import TechnologyCard from '../../components/TechnologyCard';
+import { toast } from 'react-toastify';
 import { css } from 'styled-components';
 
-const Dashboard = ({ authenticated }) => {
+const Dashboard = ({ setAuthenticated }) => {
 
-    const [handleClick, setHandleClick] = useState("cadastrar");
+    const history = useHistory();
 
-    if(!authenticated) {
+    const [user, setUser] = useState([]);
+    const [handleClick, setHandleClick] = useState("");
+    const [technologies, setTechnologies] = useState([]);
+    const [update, setUpdate] = useState(0);
+    const [technologyClick, setTechnologyClick] = useState("");
 
-        return <Redirect to="/"/>
+    const userId = JSON.parse(localStorage.getItem("@Kenziehub:user")).id;
 
-    }
+    useEffect(() => {
+
+        api.get(`/users/${userId}`)
+        .then((response) => setUser(response.data))
+        .catch((error) => toast.error(error.response.data.message));
+
+    }, []);
+
+    useEffect(() => {
+
+        api.get(`/users/${userId}`)
+        .then((response) => setTechnologies(response.data.techs))
+        .catch((error) => toast.error(error.response.data.message));
+
+    }, [update]);
 
     return (
 
@@ -37,6 +58,13 @@ const Dashboard = ({ authenticated }) => {
                     color={css`var(--gray-3)`} 
                     colorHover={css`var(--gray-1)`} 
                     width="80px"
+                    onClick={() => {
+
+                        setAuthenticated(false);
+                        localStorage.clear()
+                        history.push("/");
+
+                    }}
 
                 />
 
@@ -47,9 +75,9 @@ const Dashboard = ({ authenticated }) => {
 
             <WellcomeContainer>
 
-                <h2>Olá, Samuel Leão</h2>
+                <h2>Olá, {user.name}</h2>
 
-                <span>Primeiro módulo (Introdução ao Frontend)</span>
+                <span>{user.course_module}</span>
 
             </WellcomeContainer>
 
@@ -73,36 +101,75 @@ const Dashboard = ({ authenticated }) => {
 
                 </ChooseContainer>
 
-                <TecnologesContainer>
+                <TecnologiesContainer>
 
                     {
                         handleClick === "cadastrar" && <Modal 
 
+                            type="submit"
                             text="Cadastrar Tecnologia"
                             labelInput="Nome" 
                             placeholder="Digite aqui a nova tecnologia"
                             labelSelect="Selecionar status"
+                            handleClick={handleClick}
                             setHandleClick={setHandleClick}
+                            update={update}
+                            setUpdate={setUpdate}
 
                         /> 
                     }
-                        
+    
                     {
-                        handleClick === "detalhar" && 
-                        <Modal
+                        handleClick === "detalhar" && <Modal
 
+                            type="submit"
                             text="Tecnologia Detalhes"
                             labelInput="Nome do projeto" 
-                            placeholder="Projeto a ser alterado"
+                            placeholder={technologyClick}
                             disabled={true}
                             labelSelect="Status"
                             handleClick={handleClick}
                             setHandleClick={setHandleClick}
+                            user={user}
+                            setUser={setUser}
+                            cursor="not-allowed"
 
                         />
                     }
 
-                </TecnologesContainer>
+                    <ul>
+
+                        {
+                            
+                            technologies.map((technology) => {
+
+                                return (
+
+                                    <TechnologyCard 
+
+                                    key={technology.id}
+
+                                    onClick={(event) => {
+
+                                        setTechnologyClick(event.target.textContent)
+                                        setHandleClick("detalhar")
+
+                                    }}
+                                
+                                >
+
+                                    <p>{technology.title}</p>   
+                                    <p>{technology.status}</p>
+
+                                </TechnologyCard>
+                                
+                            )})
+                            
+                        }
+
+                    </ul>
+
+                </TecnologiesContainer>
 
             </Content>
 

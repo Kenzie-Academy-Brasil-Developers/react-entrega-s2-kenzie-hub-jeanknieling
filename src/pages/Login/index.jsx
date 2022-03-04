@@ -27,16 +27,19 @@ const Login = ({ authenticated, setAuthenticated }) => {
         api.post("/sessions", data)
         .then((response) => {
 
-            const { token} = response.data;
+            const { token, user} = response.data;
 
             localStorage.setItem("@Kenziehub:token", JSON.stringify(token));
+            localStorage.setItem("@Kenziehub:user", JSON.stringify(user));
 
             setAuthenticated(true);
+
+            console.log(response.data)
 
             return history.push("/dashboard");
 
         })
-        .catch((error) => toast.error("Email ou senha inválidos"));
+        .catch((error) => toast.error(error.response.data.message));
 
     };
 

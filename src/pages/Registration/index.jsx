@@ -37,8 +37,6 @@ const Registration = ({ authenticated }) => {
             course_module, 
         };
 
-        console.log(user)
-
         api.post("/users", user)
         .then((_) => {
 
@@ -140,10 +138,10 @@ const Registration = ({ authenticated }) => {
                     name="course_module"
                     error={errors.course_module?.message}
                     selectOptions={[
-                        "Primeiro módulo (Introdução ao Frontend)",
-                        "Segundo módulo (Frontend Avançado)",
-                        "Terceiro módulo (Introdução ao Backend)",
-                        "Quarto módulo (Backend Avançado)"
+                        "Primeiro Módulo (Introdução ao Frontend)",
+                        "Segundo Módulo (Frontend Avançado)",
+                        "Terceiro Módulo (Introdução ao Backend)",
+                        "Quarto Módulo (Backend Avançado)"
                     ]}
 
                 />

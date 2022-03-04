@@ -6,7 +6,7 @@ export const MainContainer = styled.main`
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 
 `;
 
@@ -20,13 +20,20 @@ export const HeaderContainer = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 15px;
+    padding: 24px 20px 24px 22px;
     width: 100%;
     max-width: 780px;
 
     h1 {
         color: var(--color-primary);
         font-size: 28px;
+    }
+
+    @media (min-width: 600px) {
+        Button {
+            font-size: 13px;
+            padding: 10px 12px;
+        }
     }
 `;
 
@@ -35,13 +42,14 @@ export const WellcomeContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 15px;
+    padding: 0 22px;
     width: 100%;
     max-width: 780px;
-
+    
     h2 {
         margin-top: 35px;
         margin-bottom: 10px;
+        text-align: start;
     }
 
     span {
@@ -63,22 +71,28 @@ export const ChooseContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 28px 0;
+    padding: 28px 6px 28px 8px;
     width: 100%;
-    
 
     Button {
         background-color: var(--gray-3);
+        font-size: 16px;
         width: 32px;
         height: 32px;
     }
+
 `;
 
-export const TecnologesContainer = styled.div`
+export const TecnologiesContainer = styled.div`
     background-color: var(--gray-2);
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 200px;
+    width: 98%;
+
+    ul {
+        margin-top: 18px;
+        width: 97%;
+    }
+
 `;
