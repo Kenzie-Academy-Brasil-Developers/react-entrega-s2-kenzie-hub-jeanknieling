@@ -24,7 +24,7 @@ const Dashboard = ({ setAuthenticated }) => {
     const [handleClick, setHandleClick] = useState("");
     const [technologies, setTechnologies] = useState([]);
     const [update, setUpdate] = useState(0);
-    const [technologyClick, setTechnologyClick] = useState("");
+    const [technologyClicked, setTechnologyClicked] = useState("");
 
     const userId = JSON.parse(localStorage.getItem("@Kenziehub:user")).id;
 
@@ -125,7 +125,7 @@ const Dashboard = ({ setAuthenticated }) => {
                             type="submit"
                             text="Tecnologia Detalhes"
                             labelInput="Nome do projeto" 
-                            placeholder={technologyClick}
+                            value={technologyClicked}
                             disabled={true}
                             labelSelect="Status"
                             handleClick={handleClick}
@@ -133,6 +133,8 @@ const Dashboard = ({ setAuthenticated }) => {
                             user={user}
                             setUser={setUser}
                             cursor="not-allowed"
+                            update={update}
+                            setUpdate={setUpdate}
 
                         />
                     }
@@ -147,23 +149,31 @@ const Dashboard = ({ setAuthenticated }) => {
 
                                     <TechnologyCard 
 
-                                    key={technology.id}
+                                        color={
 
-                                    onClick={(event) => {
+                                            technology.status === "Avançado" ? "true" : undefined
+                                            
+                                        }
 
-                                        setTechnologyClick(event.target.textContent)
-                                        setHandleClick("detalhar")
+                                        key={technology.id}
 
-                                    }}
+                                        onClick={(event) => {
+
+                                            setTechnologyClicked(event.target.firstChild.textContent)
+                                            setHandleClick("detalhar")
+
+                                        }}
                                 
-                                >
+                                    >
 
-                                    <p>{technology.title}</p>   
-                                    <p>{technology.status}</p>
+                                        <p>{technology.title}</p>   
+                                        <p>{technology.status}</p>
 
-                                </TechnologyCard>
+                                    </TechnologyCard>
+
+                                )
                                 
-                            )})
+                            })
                             
                         }
 

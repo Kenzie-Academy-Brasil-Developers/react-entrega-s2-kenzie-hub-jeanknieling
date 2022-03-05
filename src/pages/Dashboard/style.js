@@ -53,6 +53,9 @@ export const WellcomeContainer = styled.div`
     }
 
     span {
+        color: var(--gray-1);
+        font-size: 14px;
+        font-weight: 500;
         margin-bottom: 35px;
     }
 `;
@@ -71,6 +74,8 @@ export const ChooseContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 18px;
+    font-weight: 600;
     padding: 28px 6px 28px 8px;
     width: 100%;
 
@@ -84,7 +89,8 @@ export const ChooseContainer = styled.div`
 `;
 
 export const TecnologiesContainer = styled.div`
-    background-color: var(--gray-2);
+    background-color: var(--gray-3);
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;

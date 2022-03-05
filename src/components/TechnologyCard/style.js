@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const CardsContainer = styled.li`
-    background-color: var(--gray-4);
+    background-color: ${(props) => props.color ? css`var(--gray-2)` : css`var(--gray-4)`};
     border-radius: 5px;
     cursor: pointer;
     display: flex;
@@ -20,7 +20,7 @@ export const CardsContainer = styled.li`
 
     p + p {
 
-        color: var(--gray-1);
+        color: ${(props) => props.color ? css`var(--gray-0)` : css`var(--gray-1)`};
         font-size: 14px;
         font-weight: 400;
     }

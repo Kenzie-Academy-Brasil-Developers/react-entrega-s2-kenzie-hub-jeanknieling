@@ -8,13 +8,13 @@ export const ModalBlockerContainer = styled.div`
     height: 100vh;
     position: fixed;
     z-index: 1;
-    background-color: rgba(0,0,0,0.25);
+    background-color: rgba(0,0,0,0.5);
     top: -0vh;
 `;
 
 export const ModalContainer = styled.form`
     background-color: var(--gray-3);
-    border-radius: 10px;
+    border-radius: 5px;
     color: var(--gray-0);
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@ export const ModalContainer = styled.form`
 
     div {
         background-color: var(--gray-2);
-        border-radius: 3px;
+        border-radius: 5px 5px 0 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -51,12 +51,19 @@ export const ModalContainer = styled.form`
         background-color: transparent;
         display: flex;
         justify-content: space-around;
-        padding: 0 2px;
+        margin-top: 10px;
+        padding: 0 15px;
 
         Button {
             color: var(--gray-0);
             font-size: 14px;
             margin: 0;
+            width: 100%;
+        }
+
+        Button ~ Button {
+            width: 100px;
+            margin-left: 25px;
         }
     }
 
@@ -74,6 +81,21 @@ export const ModalContainer = styled.form`
             button {
                 font-size: 1rem;
             }
+        }
+
+        div ~ div {
+            justify-content: space-between;
+            padding: 0 20px;
+
+            Button {
+                width: 100%;
+            }
+
+            Button ~ Button {
+                width: 100px;
+                margin-left: 25px;
+            }
+
         }
     }
 `;

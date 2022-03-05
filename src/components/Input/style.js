@@ -12,6 +12,7 @@ export const InputContainer = styled.label`
         border-radius: 5px;
         color: var(--gray-0);
         cursor: ${(props) => props.cursor ? props.cursor : "pointer"};
+        font-size: 13px;
         margin-top: 5px;
         padding: 10px 12px;
         width: ${(props) => props.width};
@@ -33,6 +34,7 @@ export const InputContainer = styled.label`
         }
 
         @media (min-width: 600px) {
+            font-size: 0.85rem;
             padding: 15px;
 
             ::placeholder {
