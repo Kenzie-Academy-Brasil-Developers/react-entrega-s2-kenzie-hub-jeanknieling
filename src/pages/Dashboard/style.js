@@ -58,6 +58,21 @@ export const WellcomeContainer = styled.div`
         font-weight: 500;
         margin-bottom: 35px;
     }
+
+    @media (min-width: 600px) {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 45px 22px;
+
+        h2 {
+            margin: 0;
+        }
+
+        span {
+            margin: 0;
+        }
+    }
 `;
 
 export const Content = styled.div`
@@ -97,6 +112,7 @@ export const TecnologiesContainer = styled.div`
     width: 98%;
 
     ul {
+        display: ${(props) => props.display ? "none" : "block"};
         margin-top: 18px;
         width: 97%;
     }

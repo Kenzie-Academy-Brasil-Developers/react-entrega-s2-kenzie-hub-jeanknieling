@@ -25,8 +25,7 @@ const App = () => {
                 pauseOnHover
                 theme="dark"
                 toastStyle={{ 
-                    backgroundColor: css`var(--gray-2)`,
-                    color: css`var(--gray-0)`
+                    backgroundColor: css`var(--gray-3)`,
                 }}
                 
 

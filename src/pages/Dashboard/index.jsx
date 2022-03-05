@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { 
-    WellcomeContainer, 
+    TecnologiesContainer,
+    WellcomeContainer,
     HeaderContainer, 
     ChooseContainer, 
     MainContainer, 
-    TecnologiesContainer,
     LineContainer,
     Content
 } from "./style";
@@ -27,14 +27,14 @@ const Dashboard = ({ setAuthenticated }) => {
     const [technologyClicked, setTechnologyClicked] = useState("");
 
     const userId = JSON.parse(localStorage.getItem("@Kenziehub:user")).id;
-
+    
     useEffect(() => {
 
         api.get(`/users/${userId}`)
         .then((response) => setUser(response.data))
         .catch((error) => toast.error(error.response.data.message));
 
-    }, []);
+    }, [update]);
 
     useEffect(() => {
 
@@ -101,7 +101,11 @@ const Dashboard = ({ setAuthenticated }) => {
 
                 </ChooseContainer>
 
-                <TecnologiesContainer>
+                <TecnologiesContainer 
+
+                    display={technologies.length === 0 ? "true" : undefined}
+                    
+                >
 
                     {
                         handleClick === "cadastrar" && <Modal 
@@ -159,15 +163,19 @@ const Dashboard = ({ setAuthenticated }) => {
 
                                         onClick={(event) => {
 
-                                            setTechnologyClicked(event.target.firstChild.textContent)
-                                            setHandleClick("detalhar")
+                                            if(event.target.className !== 'clickBlocker') {
+
+                                                setTechnologyClicked(event.target.firstChild.textContent)
+                                                setHandleClick("detalhar") 
+
+                                            } 
 
                                         }}
                                 
                                     >
 
                                         <p>{technology.title}</p>   
-                                        <p>{technology.status}</p>
+                                        <p className="clickBlocker">{technology.status}</p>
 
                                     </TechnologyCard>
 

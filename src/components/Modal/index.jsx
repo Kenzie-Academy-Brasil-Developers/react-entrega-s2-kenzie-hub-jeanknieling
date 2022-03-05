@@ -42,15 +42,12 @@ const Modal = ({
         })
         .catch((error) => toast.error(error.response.data.message));
 
-
-
     }
 
     const detailTechnology = (data) => {
 
-        
         const technologyToDetail = user.techs.find(tecnology => tecnology.title === value);
-        console.log(technologyToDetail, data, user.techs)
+
         api.put(`users/techs/${technologyToDetail.id}`, data, headers)
         .then((_) => {
             
@@ -61,12 +58,10 @@ const Modal = ({
         })
         .catch((error) => toast.error(error.response.data.message));
 
-
     }
 
     const deleteTechnology = () => {
 
-        
         const technologyToDelete = user.techs.find(tecnology => tecnology.title === value);
 
         api.delete(`users/techs/${(technologyToDelete.id)}`, headers)
@@ -78,7 +73,6 @@ const Modal = ({
 
         })
         .catch((error) => toast.error(error.response.data.message));
-
 
     }
     
