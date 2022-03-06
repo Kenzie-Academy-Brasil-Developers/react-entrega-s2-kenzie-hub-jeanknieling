@@ -57,7 +57,7 @@ export const Container = styled.form`
     }
 
     Input {
-        margin-bottom: 15px;
+        width: 270px;
     }
 
     @media (min-width: 600px) {
@@ -71,8 +71,8 @@ export const Container = styled.form`
             font-size: 0.85rem;
         }
 
-        label{
-            font-size: 0.85rem;
+        Input {
+            width: 360px;
         }
 
     }

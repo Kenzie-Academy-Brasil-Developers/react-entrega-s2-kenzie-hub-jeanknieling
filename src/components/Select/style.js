@@ -4,7 +4,6 @@ export const SelectContainer = styled.label`
     display: flex;
     flex-direction: column;
     font-size: 12px;
-    font-weight: 400;
     width: 90%;
     
     select {

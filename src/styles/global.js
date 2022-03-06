@@ -43,7 +43,7 @@ export default createGlobalStyle`
         font-weight: 700;
     }
 
-    button, input, a, label {
+    button, a, section, label {
         cursor: pointer;
     }
 

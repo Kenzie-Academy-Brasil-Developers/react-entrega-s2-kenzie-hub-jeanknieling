@@ -47,6 +47,10 @@ export const ModalContainer = styled.form`
         }
     }
 
+    Input {
+        width: 270px;
+    }
+
     div ~ div {
         background-color: transparent;
         display: flex;
@@ -68,7 +72,8 @@ export const ModalContainer = styled.form`
     }
 
     label p {
-        margin-top: 15px;
+        margin-top: 10px;
+        font-weight: 500;
     }
 
     @media (min-width: 600px) {
@@ -81,6 +86,14 @@ export const ModalContainer = styled.form`
             button {
                 font-size: 1rem;
             }
+        }
+
+        label p {
+            font-size: 0.85rem;
+        }
+
+        Input {
+            width: 330px;
         }
 
         div ~ div {

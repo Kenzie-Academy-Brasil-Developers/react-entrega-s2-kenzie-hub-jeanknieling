@@ -3,14 +3,16 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { MainContainer, Container } from './style';
+import {BsFillEyeFill, BsFillEyeSlashFill} from 'react-icons/bs';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Select from '../../components/Select';
 import api from '../../services/api';
 import { toast } from "react-toastify";
+
 import { css } from 'styled-components';
 
-const Registration = ({ authenticated }) => {
+const Registration = ({ authenticated, changeIcon, setChangeIcon}) => {
 
     const history = useHistory();
 
@@ -61,7 +63,15 @@ const Registration = ({ authenticated }) => {
 
     return (
 
-        <MainContainer>
+        <MainContainer 
+
+            onClick={(event) => {
+                return event.target.tagName === "svg" && changeIcon === false || event.target.tagName === "path" && changeIcon === false ? 
+                setChangeIcon(true) : event.target.tagName === "svg" || event.target.tagName === "path" ? 
+                setChangeIcon(false) : undefined;
+            }}
+
+        >
             <div>
 
                 <h1>Kenzie Hub</h1>
@@ -72,7 +82,11 @@ const Registration = ({ authenticated }) => {
                     color={css`var(--gray-3)`} 
                     colorHover={css`var(--gray-1)`} 
                     width="80px" 
-                    onClick={() => history.push("/")}
+                    onClick={() => {
+
+                        setChangeIcon(false);
+                        history.push("/");
+                    }}
 
                 />
 
@@ -87,6 +101,7 @@ const Registration = ({ authenticated }) => {
 
                 <Input 
 
+                    cursor="text"
                     label="Nome" 
                     placeholder="Digite aqui sua senha" 
                     width="100%"
@@ -98,6 +113,7 @@ const Registration = ({ authenticated }) => {
 
                 <Input 
 
+                    cursor="text"
                     label="Email" 
                     placeholder="Digite aqui sua senha" 
                     width="100%"
@@ -109,10 +125,12 @@ const Registration = ({ authenticated }) => {
 
                 <Input 
 
+                    icon={changeIcon ? BsFillEyeFill : BsFillEyeSlashFill}
+                    cursor="text"
                     label="Senha" 
                     placeholder="Digite aqui sua senha" 
                     width="100%" 
-                    type="password"
+                    type={changeIcon ? "text" : "password"}
                     register={register}
                     name="password"
                     error={errors.password?.message}
@@ -121,10 +139,12 @@ const Registration = ({ authenticated }) => {
 
                 <Input 
 
+                    icon={changeIcon ? BsFillEyeFill : BsFillEyeSlashFill}
+                    cursor="text"
                     label="Confirmar senha" 
                     placeholder="Digite aqui sua senha" 
                     width="100%" 
-                    type="password"
+                    type={changeIcon ? "text" : "password"}
                     register={register}
                     name="passwordConfirm"
                     error={errors.passwordConfirm?.message}

@@ -7,6 +7,7 @@ import Dashboard from '../pages/Dashboard';
 const Routes = () => {
 
     const [authenticated, setAuthenticated] = useState(false);
+    const [changeIcon, setChangeIcon] = useState(false);
 
     useEffect(() => {
 
@@ -30,6 +31,8 @@ const Routes = () => {
 
                     authenticated={authenticated}
                     setAuthenticated={setAuthenticated}
+                    changeIcon={changeIcon}
+                    setChangeIcon={setChangeIcon}
 
                 />
 
@@ -37,7 +40,13 @@ const Routes = () => {
 
             <Route path="/registration">
 
-                <Registration authenticated={authenticated}/>
+                <Registration 
+
+                    authenticated={authenticated}
+                    changeIcon={changeIcon}
+                    setChangeIcon={setChangeIcon}
+
+                />
 
             </Route>
 
@@ -48,6 +57,7 @@ const Routes = () => {
                 
                     authenticated={authenticated}
                     setAuthenticated={setAuthenticated}
+                    setChangeIcon={setChangeIcon}
 
                     /> : <Redirect to="/"/>
                 }

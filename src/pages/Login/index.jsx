@@ -6,10 +6,11 @@ import { Container, MainContainer } from './style';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import api from '../../services/api';
+import {BsFillEyeFill, BsFillEyeSlashFill} from 'react-icons/bs';
 import { toast } from "react-toastify";
 import { css } from 'styled-components';
 
-const Login = ({ authenticated, setAuthenticated }) => {
+const Login = ({ authenticated, setAuthenticated, changeIcon, setChangeIcon }) => {
 
     const history = useHistory();
 
@@ -49,7 +50,13 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
     return (
         
-        <MainContainer>
+        <MainContainer 
+            onClick={(event) => {
+                return event.target.tagName === "svg" && changeIcon === false || event.target.tagName === "path" && changeIcon === false ? 
+                setChangeIcon(true) : event.target.tagName === "svg" || event.target.tagName === "path" ? 
+                setChangeIcon(false) : undefined;
+            }}
+        >
 
             <h1>Kenzie Hub</h1>
 
@@ -59,6 +66,7 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
                 <Input 
 
+                    cursor="text"
                     label="Email"
                     placeholder="Digite aqui seu email" 
                     width="100%"
@@ -70,14 +78,16 @@ const Login = ({ authenticated, setAuthenticated }) => {
 
                 <Input 
 
+                    cursor="text"
+                    icon={changeIcon ? BsFillEyeFill : BsFillEyeSlashFill}
                     label="Senha" 
                     placeholder="Digite aqui sua senha" 
                     width="100%" 
-                    type="password"
+                    type={changeIcon ? "text" : "password"}
                     register={register}
                     name="password"
                     error={errors.password?.message}
-
+                    
                 />
                     
                 <Button 
@@ -99,7 +109,12 @@ const Login = ({ authenticated, setAuthenticated }) => {
                     color={css`var(--gray-1)`} 
                     colorHover={css`var(--gray-2)`}
                     width="90%"
-                    onClick={() => history.push("/registration")}
+                    onClick={() => {
+
+                        setChangeIcon(false);
+                        history.push("/registration");
+
+                    }}
 
                 />
 

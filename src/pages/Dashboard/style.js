@@ -47,14 +47,14 @@ export const WellcomeContainer = styled.div`
     max-width: 780px;
     
     h2 {
-        margin-top: 35px;
-        margin-bottom: 10px;
+        margin: 35px 10px 20px 0;
+        font-size: 20px;
         text-align: start;
     }
 
     span {
         color: var(--gray-1);
-        font-size: 14px;
+        font-size: 12px;
         font-weight: 500;
         margin-bottom: 35px;
     }

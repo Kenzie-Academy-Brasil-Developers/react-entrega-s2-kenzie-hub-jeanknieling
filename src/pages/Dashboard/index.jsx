@@ -16,7 +16,7 @@ import TechnologyCard from '../../components/TechnologyCard';
 import { toast } from 'react-toastify';
 import { css } from 'styled-components';
 
-const Dashboard = ({ setAuthenticated }) => {
+const Dashboard = ({ setAuthenticated, setChangeIcon }) => {
 
     const history = useHistory();
 
@@ -60,6 +60,7 @@ const Dashboard = ({ setAuthenticated }) => {
                     width="80px"
                     onClick={() => {
 
+                        setChangeIcon(false);
                         setAuthenticated(false);
                         localStorage.clear()
                         history.push("/");
@@ -111,6 +112,7 @@ const Dashboard = ({ setAuthenticated }) => {
                         handleClick === "cadastrar" && <Modal 
 
                             type="submit"
+                            cursor="text"
                             text="Cadastrar Tecnologia"
                             labelInput="Nome" 
                             placeholder="Digite aqui a nova tecnologia"
@@ -119,6 +121,7 @@ const Dashboard = ({ setAuthenticated }) => {
                             setHandleClick={setHandleClick}
                             update={update}
                             setUpdate={setUpdate}
+                            width="500px"
 
                         /> 
                     }
